@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Netflix - Log in / Sign up (Nicole)</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+
+body {
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a89f-c70d9b055807/39552d46-077f-4292-abe6-e4521f25675c/PH-en-20240617-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 1;
+}
+
+.container {
+  width: 100%; max-width: 420px;
+  text-align: center;
+  position: relative; z-index: 2;
+  background: rgba(0, 0, 0, 0.75);
+  padding: 35px; border-radius: 4px;
+}
+
+.help {
+  position: absolute; top: 15px; right: 15px;
+  width: 30px; height: 30px; border-radius: 50%;
+  border: 1px solid #555;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; color: #ccc;
+}
+.help:hover { background: #333; }
+
+.logo {
+  font-size: 40px; font-weight: 900;
+  color: #e50914; margin-bottom: 25px;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 24px; font-weight: 700;
+  margin-bottom: 8px; color: #fff;
+}
+
+.subtitle {
+  font-size: 15px; color: #b3b3b3;
+  margin-bottom: 30px; line-height: 1.5;
+}
+
+.tabs {
+  display: flex; border-bottom: 1px solid #333;
+  margin-bottom: 30px;
+}
+.tab {
+  flex: 1; padding: 12px; cursor: pointer;
+  font-weight: 600; font-size: 17px;
+  color: #8c8c8c; border-bottom: 2px solid transparent;
+  transition: 0.2s;
+}
+.tab.active {
+  color: #fff; border-bottom: 2px solid #e50914;
+}
+.tab:hover { color: #ddd; }
+
+.form { display: none; }
+.form.active { display: block; }
+
+input {
+  width: 100%; padding: 15px; margin-bottom: 16px;
+  border: none; border-radius: 4px;
+  font-size: 16px; background: #333; color: #fff;
+  outline: none;
+}
+input::placeholder { color: #8c8c8c; }
+input:focus {
+  background: #444; border-bottom: 2px solid #e50914;
+}
+
+.main-btn {
+  width: 100%; padding: 14px; margin: 10px 0 20px;
+  border: none; border-radius: 4px;
+  background: #e50914; color: white;
+  font-size: 16px; font-weight: 600;
+  cursor: pointer; transition: background 0.2s;
+}
+.main-btn:hover { background: #f40612; }
+
+.footer {
+  margin-top: 20px; font-size: 13px;
+  color: #8c8c8c; line-height: 1.6;
+}
+.footer a {
+  color: #fff; font-weight: 500;
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+.switch-link {
+  margin-top: 25px; font-size: 15px;
+  color: #8c8c8c;
+}
+.switch-link a {
+  color: #fff; font-weight: 600;
+  text-decoration: none;
+}
+.switch-link a:hover { text-decoration: underline; }
+
+.error {
+  color: #e50914; font-size: 14px;
+  margin-bottom: 12px; display: none;
+  text-align: left; padding-left: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="help" onclick="alert('Help & Support')">?</div>
+
+  <div class="logo">NETFLIX</div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('signup', this)">Sign Up</div>
+    <div class="tab" onclick="switchTab('login', this)">Log In</div>
+  </div>
+
+  <!-- SIGN UP FORM - For Nicole L. Duero -->
+  <div class="form active" id="signupForm">
+    <h1>Create Your Account</h1>
+    <p class="subtitle">This account is exclusively for <strong>NICOLE L. DUERO</strong>.</p>
+
+    <input type="text" id="fullname" placeholder="Full Name" value="NICOLE L. DUERO" readonly>
+    <input type="email" id="email" placeholder="Email Address" value="nicolelduero@gmail.com" readonly>
+    <input type="text" id="newUsername" placeholder="Username" value="nicole_duero" readonly>
+    <input type="password" id="newPassword" placeholder="Create Password" required>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+    <button class="main-btn" onclick="handleSignup()">Sign Up</button>
+
+    <div class="footer">
+      By signing up, you agree to our Terms of Use and Privacy Policy.
+    </div>
+
+    <div class="switch-link">
+      Already have an account? <a onclick="switchTab('login', document.querySelectorAll('.tab')[1])">Sign In</a>
+    </div>
+  </div>
+
+  <!-- LOG IN FORM - For Nicole L. Duero -->
+  <div class="form" id="loginForm">
+    <h1>Sign In</h1>
+    <p class="subtitle">Sign in to access your personal account and portfolio.</p>
+
+    <input type="text" id="loginUsername" placeholder="Username" required>
+    <div class="error" id="loginError">Incorrect username or password. Please try again.</div>
+
+    <input type="password" id="loginPassword" placeholder="Password" required>
+
+    <button class="main-btn" onclick="handleLogin()">Sign In</button>
+
+    <div class="switch-link">
+      New user? <a onclick="switchTab('signup', document.querySelectorAll('.tab')[0])">Create an account</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function switchTab(formType, tabEl) {
+  document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+  tabEl.classList.add('active');
+  document.querySelectorAll('.form').forEach(form => form.classList.remove('active'));
+  document.getElementById(formType + 'Form').classList.add('active');
+  document.getElementById('loginError').style.display = 'none';
+}
+
+function handleSignup() {
+  const pass = document.getElementById('newPassword').value;
+  const confirm = document.getElementById('confirmPassword').value;
+
+  if (pass.length < 6) {
+    alert('Password must be at least 6 characters long.');
+    return;
+  }
+  if (pass !== confirm) {
+    alert('Passwords do not match. Please check again.');
+    return;
+  }
+  localStorage.setItem("nicole_user", "nicole_duero");
+  localStorage.setItem("nicole_pass", pass);
+  alert('Account created successfully for NICOLE L. DUERO!');
+  switchTab('login', document.querySelectorAll('.tab')[1]);
+}
+
+function handleLogin() {
+  const user = document.getElementById('loginUsername').value.trim();
+  const pass = document.getElementById('loginPassword').value;
+  const errorBox = document.getElementById('loginError');
+
+  const savedUser = localStorage.getItem("nicole_user") || "nicole_duero";
+  const savedPass = localStorage.getItem("nicole_pass") || "duero123";
+
+  if (user === savedUser && pass === savedPass) {
+    errorBox.style.display = 'none';
+    alert('Welcome back, NICOLE L. DUERO! Access granted.');
+    window.location.href = "nicole.html"; // ← Links to Nicole's profile
+  } else {
+    errorBox.style.display = 'block';
+  }
+}
+</script>
+
+</body>
+</html>
