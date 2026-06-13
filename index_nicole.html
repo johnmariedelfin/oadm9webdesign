@@ -215,7 +215,8 @@ function handleLogin() {
   if (user === savedUser && pass === savedPass) {
     errorBox.style.display = 'none';
     alert('Welcome back, NICOLE L. DUERO! Access granted.');
-    window.location.href = "nicole.html"; // ← Links to Nicole's profile
+    // ✅ FIXED: from "nicole.html" → "profile_nicole.html"
+    window.location.href = "profile_nicole.html";
   } else {
     errorBox.style.display = 'block';
   }
