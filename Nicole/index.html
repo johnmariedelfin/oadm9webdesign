@@ -13,93 +13,69 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/9134db96-10d6-4a64-a89f-c70d9b055807/39552d46-077f-4292-abe6-e4521f25675c/PH-en-20240617-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
-            background-size: cover;
-            background-position: center;
-            position: relative;
         }
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.65);
-            z-index: 1;
-        }
-        .container {
-            width: 100%; max-width: 420px;
+        .login-box {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 350px;
             text-align: center;
-            position: relative; z-index: 2;
-            background: rgba(0, 0, 0, 0.75);
-            padding: 35px; border-radius: 4px;
         }
-        .logo {
-            font-size: 40px; font-weight: 900;
-            color: #e50914; margin-bottom: 25px;
-            letter-spacing: 1px;
-        }
-        h1 {
-            font-size: 24px; font-weight: 700;
-            margin-bottom: 8px; color: #fff;
-        }
-        .subtitle {
-            font-size: 15px; color: #b3b3b3;
-            margin-bottom: 30px; line-height: 1.5;
+        h2 {
+            color: #e50914;
+            margin-bottom: 25px;
         }
         input {
-            width: 100%; padding: 15px; margin-bottom: 16px;
-            border: none; border-radius: 4px;
-            font-size: 16px; background: #333; color: #fff;
-            outline: none;
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 4px;
+            background: #333;
+            color: #fff;
+            font-size: 16px;
         }
-        input::placeholder { color: #8c8c8c; }
-        .main-btn {
-            width: 100%; padding: 14px; margin: 10px 0 20px;
-            border: none; border-radius: 4px;
-            background: #e50914; color: white;
-            font-size: 16px; font-weight: 600;
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: #e50914;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
         }
-        .error {
-            color: #e50914; font-size: 14px;
-            margin-bottom: 12px; display: none;
-            text-align: left;
+        #error {
+            color: #ff5555;
+            margin-top: 12px;
+            display: none;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="logo">PORTFOLIO</div>
-    <h1>Sign In - Nicole L. Duero</h1>
-    <p class="subtitle">Access your personal portfolio</p>
+    <div class="login-box">
+        <h2>Sign In</h2>
+        <input type="text" id="user" placeholder="Username">
+        <input type="password" id="pass" placeholder="Password">
+        <button onclick="checkLogin()">Login</button>
+        <div id="error">Wrong Username or Password!</div>
+    </div>
 
-    <div class="error" id="loginError">Incorrect username or password.</div>
+    <script>
+        function checkLogin() {
+            const user = document.getElementById("user").value.trim();
+            const pass = document.getElementById("pass").value;
 
-    <input type="text" id="loginUsername" placeholder="Username" required>
-    <input type="password" id="loginPassword" placeholder="Password" required>
-
-    <button class="main-btn" onclick="handleLogin()">Sign In</button>
-</div>
-
-<script>
-function handleLogin() {
-    const user = document.getElementById('loginUsername').value.trim();
-    const pass = document.getElementById('loginPassword').value;
-    const errorBox = document.getElementById('loginError');
-
-    // ✅ Correct login details
-    const correctUser = "nicole_duero";
-    const correctPass = "duero123";
-
-    if (user === correctUser && pass === correctPass) {
-        errorBox.style.display = 'none';
-        alert('Welcome Nicole!');
-        // ✅ Redirect to profile.html (same folder = works!)
-        window.location.href = "profile.html";
-    } else {
-        errorBox.style.display = 'block';
-    }
-}
-</script>
+            if (user === "nicole" && pass === "1234") {
+                alert("✅ Login Successful!");
+                window.location.href = "profile.html";
+            } else {
+                document.getElementById("error").style.display = "block";
+            }
+        }
+    </script>
 </body>
 </html>
