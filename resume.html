@@ -63,22 +63,36 @@
             margin-bottom: 2.5rem;
             border-left: 5px solid #e50914;
         }
+
+        /* Header with Photo */
         .resume-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
             border-bottom: 2px solid #eee;
-            padding-bottom: 1rem;
+            padding-bottom: 1.5rem;
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
-        .resume-header h2 {
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #e50914;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .header-info h2 {
             color: #2c3e50;
-            text-align: left;
-            margin: 0;
+            margin: 0 0 8px 0;
             font-size: 1.8rem;
         }
         .contact-info {
             color: #555;
             font-size: 0.95rem;
-            margin-top: 0.5rem;
+            line-height: 1.6;
         }
+
         .section-title {
             color: #2c3e50;
             font-size: 1.2rem;
@@ -122,10 +136,15 @@
         <!-- John Marie Delfin -->
         <div class="resume-card">
             <div class="resume-header">
-                <h2>John Marie Delfin</h2>
-                <p class="contact-info">
-                    📍 Lapaz, Hamtic, Antique &nbsp; | &nbsp; 📞 0953-944-7964 &nbsp; | &nbsp; ✉️ johnmariedelfin@gmail.com
-                </p>
+                <!-- Profile Photo -->
+                <img src="images/profile_john.jpg" alt="John Marie Delfin" class="profile-photo">
+                
+                <div class="header-info">
+                    <h2>John Marie Delfin</h2>
+                    <p class="contact-info">
+                        📍 Lapaz, Hamtic, Antique &nbsp; | &nbsp; 📞 0953-944-7964 &nbsp; | &nbsp; ✉️ johnmariedelfin@gmail.com
+                    </p>
+                </div>
             </div>
 
             <h3 class="section-title">🎯 Career Objective</h3>
